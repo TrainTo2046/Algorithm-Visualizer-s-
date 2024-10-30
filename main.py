@@ -12,7 +12,7 @@ SCREEN_HEIGHT = 768
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption('Algorithm Visualizer')
-image =  pygame.image.load('Visualizer/Assets/BackgroundImage.png')
+image =  pygame.image.load('Assets/BackgroundImage.png')
 clock = pygame.time.Clock()
 
 def Background(image):

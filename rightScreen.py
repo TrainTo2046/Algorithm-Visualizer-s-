@@ -47,7 +47,7 @@ class Right_Screen:
         self.line_list = lst
         
     def get_readMe(self, name):
-        path = "Visualizer/AlgoReadMe/" + name + ".txt"
+        path = "AlgoReadMe/" + name + ".txt"
         f = open(path)
         content = f.read().splitlines()
         f.close()
@@ -59,7 +59,7 @@ class Right_Screen:
         for str in algo_name:
             n += str
 
-        path = "Visualizer/CodeReadMe/" + n + "Code.txt"
+        path = "CodeReadMe/" + n + "Code.txt"
         f = open(path)
         content = f.read().splitlines()
         f.close()
