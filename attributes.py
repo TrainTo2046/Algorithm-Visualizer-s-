@@ -1,13 +1,14 @@
 from enum import Enum
-
-class ButtonType(Enum):
+# Button Type
+class Button_Type(Enum):
     AlgoButton: int = 1
     ReadMeButton: int = 2
     PlayButton: int = 3
     WelcomeButton: int = 4
     CodeButton: int = 5
-    
-class TopRightButton(Enum):
+
+# Button Attributes
+class TR_Button_Attributes(Enum):
     width: int = 100
     height: int = 30
     elevation: int = 4
@@ -18,7 +19,7 @@ class TopRightButton(Enum):
     boarder_radius: int = 5
     font_size: int = 30
     
-class MidRightButton(Enum):
+class MR_Button_Attributes(Enum):
     width: int = 155
     height: int = 30
     elevation: int = 3
@@ -29,7 +30,7 @@ class MidRightButton(Enum):
     boarder_radius: int = 10
     font_size: int = 30
     
-class LeftButton(Enum):
+class L_Button_Attributes(Enum):
     width: int = 170
     height: int = 40
     elevation: int = 5
@@ -40,7 +41,7 @@ class LeftButton(Enum):
     boarder_radius: int = 5
     font_size: int = 25
     
-class TopLeftButton(Enum):
+class TL_Button_Attributes(Enum):
     width: int = 150
     height: int = 30
     elevation: int = 4
@@ -50,3 +51,24 @@ class TopLeftButton(Enum):
     clicked_color = '#FFEB00'
     boarder_radius: int = 5
     font_size: int = 25
+
+# Screen Type
+class Screen_Type(Enum):
+    ReadMe: int = 1
+    Code: int = 2
+
+# Screen Attributes
+class Screen_Attributes(Enum):
+    width: int = 326
+    height: int = 640
+    x_value: int = 686
+    y_value: int = 102
+    
+    top_color = '#7C9AD6'
+    font_color = '#000000'#"#FFFFFF"
+    bottom_color = "#FFFFFF"
+    elevation = 700
+
+    boarder_radius: int = 5
+    font_size_readme: int = 25
+    font_size_code:int = 20

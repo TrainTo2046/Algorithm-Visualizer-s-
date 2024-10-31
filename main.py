@@ -1,55 +1,54 @@
+import sys
 import pygame
 import button
 import rightScreen
 import createButtons
 import createRightScreen
-import screenAttributes
+from utils import get_background_img
 
-pygame.init()
+class Algorithm_Visualizer:
+    def __init__(self):
+        pygame.init()
 
-SCREEN_WIDTH = 1024
-SCREEN_HEIGHT = 768
-
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption('Algorithm Visualizer')
-image =  pygame.image.load('Assets/BackgroundImage.png')
-clock = pygame.time.Clock()
-
-def Background(image):
-    size = pygame.transform.scale(image, (1024, 768))
-    screen.blit(size, (0, 0))
-
-# All Buttons
-allButtons = createButtons.ButtonList()
-button_list = allButtons.get_button()
-
-# All Right Screens
-allScreens = createRightScreen.RightScreenList()
-readme_map = allScreens.get_readMe()
-code_map = allScreens.get_code()
-
-run = True
-while run:
-    Background(image)
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
-
-    for button in button_list:
-        button.draw(screen)
-    
-    for button in button_list:
-        button.check_click(button_list, readme_map, code_map)
-
-    for name in code_map.keys():
-        code_map[name].draw(screen)
+        SCREEN_WIDTH = 1024
+        SCREEN_HEIGHT = 768
         
-    for name in readme_map.keys():
-        readme_map[name].draw(screen)
+        pygame.display.set_caption('Algorithm Visualizer')
+        self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-    
+        self.clock = pygame.time.Clock()
 
-    pygame.display.update()
+        # All Buttons
+        allButtons = createButtons.ButtonList()
+        self.button_list = allButtons.get_button()
 
-pygame.quit()
+        # All Right Screens
+        allScreens = createRightScreen.RightScreenList()
+        self.readme_map = allScreens.get_readMe()
+        self.code_map = allScreens.get_code()
+
+    def run(self):
+        while True:
+            self.screen.blit(get_background_img(), (0, 0))
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+            for button in self.button_list:
+                button.draw(self.screen)
+            
+            for button in self.button_list:
+                button.check_click(self.button_list, self.readme_map, self.code_map)
+
+            for name in self.code_map.keys():
+                self.code_map[name].draw(self.screen)
+                
+            for name in self.readme_map.keys():
+                self.readme_map[name].draw(self.screen)
+
+            pygame.display.update()
+            self.clock.tick(60)
+
+Algorithm_Visualizer().run()

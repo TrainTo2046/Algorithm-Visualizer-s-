@@ -1,7 +1,7 @@
 import pygame
-import buttonAttributes
+from attributes import Button_Type
+from attributes import Screen_Type
 import rightScreen
-import screenAttributes
 import time
 
 class Button:
@@ -59,13 +59,13 @@ class Button:
                 self.pressed = True
             else:
                 if self.pressed == True:
-                    if self.button_type == buttonAttributes.ButtonType.PlayButton:
+                    if self.button_type == Button_Type.PlayButton:
                         return self.play_button(buttons, readme_map, code_map)
-                    elif self.button_type == buttonAttributes.ButtonType.AlgoButton:
+                    elif self.button_type == Button_Type.AlgoButton:
                         return self.algo_button(buttons, readme_map, code_map)
-                    elif self.button_type == buttonAttributes.ButtonType.CodeButton:
+                    elif self.button_type == Button_Type.CodeButton:
                         return self.code_button(buttons, readme_map, code_map)
-                    elif self.button_type == buttonAttributes.ButtonType.WelcomeButton:
+                    elif self.button_type == Button_Type.WelcomeButton:
                         return self.welcome_button(buttons, readme_map, code_map)
                     else:
                         return self.readme_button(buttons, readme_map, code_map)
@@ -104,7 +104,7 @@ class Button:
     def play_button(self, buttons, readme_map, code_map):
 
         for button in buttons:
-            if (button.button_type == buttonAttributes.ButtonType.AlgoButton and
+            if (button.button_type == Button_Type.AlgoButton and
                 button.pressed == True):
                 # plays the visualizer
                 self.play_visualizer(button.text)
@@ -119,12 +119,12 @@ class Button:
         
         val = False
         for button in buttons:
-            if (button.button_type == buttonAttributes.ButtonType.AlgoButton and
+            if (button.button_type == Button_Type.AlgoButton and
                 button.pressed == True):
                 
                 self.readme_window(button.text)
                 val = True
-            elif button.button_type == buttonAttributes.ButtonType.CodeButton:
+            elif button.button_type == Button_Type.CodeButton:
                 button.dynamic_elevation = button.elevation
                 button.dynamic_top_color = button.top_color
                 
@@ -146,17 +146,17 @@ class Button:
 
             # set the new screen
             readMe_map[text].dynamic_elevation = 0
-            return (text, screenAttributes.ScreenType.ReadMe)
+            return (text, Screen_Type.ReadMe)
 
     def code_button(self, buttons, readMe_map, code_map):
         val = False
         for button in buttons:
-            if (button.button_type == buttonAttributes.ButtonType.AlgoButton and
+            if (button.button_type == Button_Type.AlgoButton and
                 button.pressed == True):
 
                 self.code_window(button.text)
                 val = True
-            elif button.button_type == buttonAttributes.ButtonType.ReadMeButton:
+            elif button.button_type == Button_Type.ReadMeButton:
                 button.dynamic_elevation = button.elevation
                 button.dynamic_top_color = button.top_color
                 button.pressed = False
@@ -178,7 +178,7 @@ class Button:
             # set the new screen
             code_map[text].dynamic_elevation = 0
             
-            return (text, screenAttributes.ScreenType.Code)
+            return (text, Screen_Type.Code)
     
     def algo_button(self, buttons, readMe_map, code_map):
         text = 'Welcome'
@@ -189,9 +189,9 @@ class Button:
             # Ending a visualizer if it is currently on
             # Turning off all the other algo buttons
             # Turning off the Code button
-            if (button.button_type == buttonAttributes.ButtonType.PlayButton or 
-                button.button_type == buttonAttributes.ButtonType.CodeButton or
-                (button.button_type == buttonAttributes.ButtonType.AlgoButton and
+            if (button.button_type == Button_Type.PlayButton or 
+                button.button_type == Button_Type.CodeButton or
+                (button.button_type == Button_Type.AlgoButton and
                   button.text != self.text)):
                 
                 button.dynamic_elevation = button.elevation
@@ -199,7 +199,7 @@ class Button:
                 button.press = False
 
             # Turing on the readme_button
-            elif button.button_type == buttonAttributes.ButtonType.ReadMeButton:
+            elif button.button_type == Button_Type.ReadMeButton:
                 button.dynamic_elevation = 0
                 button.dynamic_top_color = self.clicked_color
                 button.pressed = True
@@ -215,6 +215,6 @@ class Button:
         readMe_map[text].dynamic_elevation = 0
 
         print("Algo selected is ", self.text)
-        return (text, screenAttributes.ScreenType.ReadMe)
+        return (text, Screen_Type.ReadMe)
 
         

@@ -1,14 +1,14 @@
 import pygame
 import rightScreen
-import screenAttributes
+from attributes import Screen_Type
 
 pygame.init()
 class RightScreenList():
     def __init__(self):
      
         # Top Left Button
-        readMe5 = rightScreen.Right_Screen('Welcome', screenAttributes.ScreenType.ReadMe)
-        code5 = rightScreen.Right_Screen('Welcome', screenAttributes.ScreenType.Code)
+        readMe5 = rightScreen.Right_Screen('Welcome', Screen_Type.ReadMe)
+        code5 = rightScreen.Right_Screen('Welcome', Screen_Type.Code)
         
         """ 
         # Left Buttons
