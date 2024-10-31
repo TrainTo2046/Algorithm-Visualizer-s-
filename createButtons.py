@@ -1,6 +1,5 @@
 import pygame
 import button
-import rightScreen
 from attributes import Button_Type, MR_Button_Attributes, TL_Button_Attributes, TR_Button_Attributes, L_Button_Attributes
 
 pygame.init()

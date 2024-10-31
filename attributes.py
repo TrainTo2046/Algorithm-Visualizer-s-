@@ -16,7 +16,7 @@ class TR_Button_Attributes(Enum):
     top_color ='#117554'
     bottom_color = '#6EC207'
     clicked_color = '#4379F2'
-    boarder_radius: int = 5
+    border_radius: int = 5
     font_size: int = 30
     
 class MR_Button_Attributes(Enum):
@@ -27,7 +27,7 @@ class MR_Button_Attributes(Enum):
     top_color = '#6C48C5'
     bottom_color = '#C68FE6'
     clicked_color = '#D74B4B'
-    boarder_radius: int = 10
+    border_radius: int = 10
     font_size: int = 30
     
 class L_Button_Attributes(Enum):
@@ -38,7 +38,7 @@ class L_Button_Attributes(Enum):
     top_color ='#4793AF'
     bottom_color = '#074173'
     clicked_color = '#D74B4B'
-    boarder_radius: int = 5
+    border_radius: int = 5
     font_size: int = 25
     
 class TL_Button_Attributes(Enum):
@@ -49,7 +49,7 @@ class TL_Button_Attributes(Enum):
     top_color ='#001F3F'
     bottom_color = '#EAD8B1'
     clicked_color = '#FFEB00'
-    boarder_radius: int = 5
+    border_radius: int = 5
     font_size: int = 25
 
 # Screen Type
@@ -65,10 +65,7 @@ class Screen_Attributes(Enum):
     y_value: int = 102
     
     top_color = '#7C9AD6'
-    font_color = '#000000'#"#FFFFFF"
-    bottom_color = "#FFFFFF"
-    elevation = 700
+    font_color = '#FFFFFF'
 
-    boarder_radius: int = 5
-    font_size_readme: int = 25
-    font_size_code:int = 20
+    border_radius: int = 5
+    font_size: int = 25

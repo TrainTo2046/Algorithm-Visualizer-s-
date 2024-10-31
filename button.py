@@ -1,7 +1,6 @@
 import pygame
-from attributes import Button_Type
-from attributes import Screen_Type
-import rightScreen
+from attributes import Button_Type, Screen_Type
+from rightScreen import Right_Screen
 import time
 
 class Button:
@@ -12,7 +11,7 @@ class Button:
         self.button_type = button_type
         
 		# button desing
-        self.boarder_raidus = button_design.boarder_radius.value
+        self.border_raidus = button_design.border_radius.value
         self.elevation = button_design.elevation.value
         self.dynamic_elevation = button_design.elevation.value
         self.width = button_design.width.value
@@ -45,12 +44,12 @@ class Button:
         self.bottom_rect.midtop = self.top_rect.midtop
         self.bottom_rect.height = self.top_rect.height + self.dynamic_elevation
 
-        pygame.draw.rect(screen, self.bottom_color, self.bottom_rect, border_radius = self.boarder_raidus)
-        pygame.draw.rect(screen, self.dynamic_top_color, self.top_rect, border_radius = self.boarder_raidus)
+        pygame.draw.rect(screen, self.bottom_color, self.bottom_rect, border_radius = self.border_raidus)
+        pygame.draw.rect(screen, self.dynamic_top_color, self.top_rect, border_radius = self.border_raidus)
         screen.blit(self.text_surf, self.text_rect)
         #self.check_click(screen, buttons, readme_map, code_map)
 
-    def check_click(self, buttons, readme_map, code_map):
+    def check_click(self, buttons, rightScreen):
         mouse_pos = pygame.mouse.get_pos()
         if self.top_rect.collidepoint(mouse_pos):
             if pygame.mouse.get_pressed()[0]:
@@ -60,15 +59,15 @@ class Button:
             else:
                 if self.pressed == True:
                     if self.button_type == Button_Type.PlayButton:
-                        return self.play_button(buttons, readme_map, code_map)
+                        return self.play_button(buttons, rightScreen)
                     elif self.button_type == Button_Type.AlgoButton:
-                        return self.algo_button(buttons, readme_map, code_map)
+                        return self.algo_button(buttons, rightScreen)
                     elif self.button_type == Button_Type.CodeButton:
-                        return self.code_button(buttons, readme_map, code_map)
+                        return self.code_button(buttons, rightScreen)
                     elif self.button_type == Button_Type.WelcomeButton:
-                        return self.welcome_button(buttons, readme_map, code_map)
+                        return self.welcome_button(buttons, rightScreen)
                     else:
-                        return self.readme_button(buttons, readme_map, code_map)
+                        return self.readme_button(buttons, rightScreen)
         
         return ("", None)
 
@@ -85,7 +84,7 @@ class Button:
         # Place holder for the actual Code code
         print("Presenting Algotith Code for ", text)
 
-    def welcome_button(self, buttons, readMe_map, code_map):
+    def welcome_button(self, buttons, rightScreen):
         
         for button in buttons:
             button.pressed = False
@@ -93,15 +92,11 @@ class Button:
             button.dynamic_top_color = button.top_color
         
         # reset all everything
-        for name in code_map:
-            code_map[name].dynamic_elevation = code_map[name].elevation
-
-        for name in readMe_map:
-            readMe_map[name].dynamic_elevation = readMe_map[name].elevation
+        rightScreen.update('', Button_Type.ReadMeButton)
 
         return ("", None)
 
-    def play_button(self, buttons, readme_map, code_map):
+    def play_button(self, buttons, rightScreen):
 
         for button in buttons:
             if (button.button_type == Button_Type.AlgoButton and
@@ -115,7 +110,7 @@ class Button:
         self.pressed = False
         return ("", None)
         
-    def readme_button(self, buttons, readMe_map, code_map):
+    def readme_button(self, buttons, rightScreen):
         
         val = False
         for button in buttons:
@@ -138,17 +133,10 @@ class Button:
         else:
             text = 'Welcome'
             # reset all everything
-            for name in code_map:
-                code_map[name].dynamic_elevation = code_map[name].elevation
-
-            for name in readMe_map:
-                readMe_map[name].dynamic_elevation = readMe_map[name].elevation
-
-            # set the new screen
-            readMe_map[text].dynamic_elevation = 0
+            rightScreen.update(self.text, Button_Type.ReadMeButton)
             return (text, Screen_Type.ReadMe)
 
-    def code_button(self, buttons, readMe_map, code_map):
+    def code_button(self, buttons, rightScreen):
         val = False
         for button in buttons:
             if (button.button_type == Button_Type.AlgoButton and
@@ -168,19 +156,11 @@ class Button:
             return ("", None)
         else:
             text = 'Welcome'
-            # reset all everything
-            for name in code_map:
-                code_map[name].dynamic_elevation = code_map[name].elevation
-
-            for name in readMe_map:
-                readMe_map[name].dynamic_elevation = readMe_map[name].elevation
-
-            # set the new screen
-            code_map[text].dynamic_elevation = 0
+            rightScreen.update(self.text, Button_Type.CodeButton)
             
             return (text, Screen_Type.Code)
     
-    def algo_button(self, buttons, readMe_map, code_map):
+    def algo_button(self, buttons, rightScreen):
         text = 'Welcome'
         # ReadMe for the currently selected algo
         self.readme_window(self.text)
@@ -204,15 +184,7 @@ class Button:
                 button.dynamic_top_color = self.clicked_color
                 button.pressed = True
 
-        # reset all everything
-        for name in code_map:
-            code_map[name].dynamic_elevation = code_map[name].elevation
-
-        for name in readMe_map:
-            readMe_map[name].dynamic_elevation = readMe_map[name].elevation
-
-        # set the new screen
-        readMe_map[text].dynamic_elevation = 0
+        rightScreen.update(self.text, Button_Type.ReadMeButton)
 
         print("Algo selected is ", self.text)
         return (text, Screen_Type.ReadMe)
