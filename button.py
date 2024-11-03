@@ -1,7 +1,5 @@
 import pygame
 from attributes import Button_Type, Screen_Type
-from rightScreen import Right_Screen
-import time
 
 class Button:
     def __init__(self, text, pos, button_design, button_type): # pos = (x, y)
@@ -36,7 +34,7 @@ class Button:
         self.text_surf = gui_font.render(text, True, '#FFFFFF')
         self.text_rect = self.text_surf.get_rect(center = self.top_rect.center)
 
-    def draw(self, screen): # buttons: [List]
+    def draw(self, screen, button_list, rightScreens): # buttons: [List]
         # elevation Logic
         self.top_rect.y = self.original_y_pos - self.dynamic_elevation
         self.text_rect.center = self.top_rect.center
@@ -47,7 +45,7 @@ class Button:
         pygame.draw.rect(screen, self.bottom_color, self.bottom_rect, border_radius = self.border_raidus)
         pygame.draw.rect(screen, self.dynamic_top_color, self.top_rect, border_radius = self.border_raidus)
         screen.blit(self.text_surf, self.text_rect)
-        #self.check_click(screen, buttons, readme_map, code_map)
+        self.check_click(button_list, rightScreens)
 
     def check_click(self, buttons, rightScreen):
         mouse_pos = pygame.mouse.get_pos()
@@ -64,15 +62,10 @@ class Button:
                         return self.algo_button(buttons, rightScreen)
                     elif self.button_type == Button_Type.CodeButton:
                         return self.code_button(buttons, rightScreen)
-                    elif self.button_type == Button_Type.WelcomeButton:
+                    elif self.button_type == Button_Type.HomeButton:
                         return self.welcome_button(buttons, rightScreen)
-                    else:
+                    elif self.button_type == Button_Type.ReadMeButton:
                         return self.readme_button(buttons, rightScreen)
-
-    def play_visualizer(self, text):
-        # Place holder for the actual play code
-        print("Visualizer is live for ", text)
-        time.sleep(5)
 
     def welcome_button(self, buttons, rightScreen):
         for button in buttons:
@@ -81,14 +74,12 @@ class Button:
             button.dynamic_top_color = button.top_color
         
         # reset all everything
-        rightScreen.update('', Button_Type.ReadMeButton)
+        rightScreen.update('', Screen_Type.ReadMe)
 
     def play_button(self, buttons, rightScreen):
         for button in buttons:
             if (button.button_type == Button_Type.AlgoButton and
                 button.pressed == True):
-                # plays the visualizer
-                self.play_visualizer(button.text)
                 break
                 
         self.dynamic_elevation = self.elevation
@@ -102,7 +93,7 @@ class Button:
                 button.pressed == True):
                 # have selected an algorithm and clicked readme button
                 val = True
-                rightScreen.update(self.text, Button_Type.ReadMeButton)
+                rightScreen.update(button.text, Screen_Type.ReadMe)
 
             elif button.button_type == Button_Type.CodeButton:
                 button.dynamic_elevation = button.elevation
@@ -122,7 +113,7 @@ class Button:
                 button.pressed == True):
                 # have selected an algorithm and clicked code button
                 val = True
-                rightScreen.update(self.text, Button_Type.CodeButton)
+                rightScreen.update(button.text, Screen_Type.Code)
                 
             elif button.button_type == Button_Type.ReadMeButton:
                 button.dynamic_elevation = button.elevation
@@ -147,14 +138,15 @@ class Button:
                 
                 button.dynamic_elevation = button.elevation
                 button.dynamic_top_color = button.top_color
-                button.press = False
+                button.pressed = False
 
             # Turing on the readme_button
             elif button.button_type == Button_Type.ReadMeButton:
                 button.dynamic_elevation = 0
                 button.dynamic_top_color = self.clicked_color
                 button.pressed = True
-        rightScreen.update(self.text, Button_Type.ReadMeButton)
+        
+        rightScreen.update(self.text, Screen_Type.ReadMe)
 
 
         

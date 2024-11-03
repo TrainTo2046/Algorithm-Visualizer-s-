@@ -4,7 +4,7 @@ class Button_Type(Enum):
     AlgoButton: int = 1
     ReadMeButton: int = 2
     PlayButton: int = 3
-    WelcomeButton: int = 4
+    HomeButton: int = 4
     CodeButton: int = 5
 
 # Button Attributes
@@ -68,4 +68,5 @@ class Screen_Attributes(Enum):
     font_color = '#FFFFFF'
 
     border_radius: int = 5
-    font_size: int = 25
+    font_size_readme_txt: int = 25
+    font_size_code_txt: int = 20

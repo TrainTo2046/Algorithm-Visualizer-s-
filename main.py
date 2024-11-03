@@ -1,6 +1,6 @@
 import sys
 import pygame
-import createButtons
+from createButtons import ButtonList 
 from rightScreen import Right_Screen
 from utils import get_background_img
 
@@ -17,7 +17,7 @@ class Algorithm_Visualizer:
         self.clock = pygame.time.Clock()
 
         # All Buttons
-        allButtons = createButtons.ButtonList()
+        allButtons = ButtonList()
         self.button_list = allButtons.get_button()
 
         # All Right Screens
@@ -34,10 +34,7 @@ class Algorithm_Visualizer:
                     sys.exit()
 
             for button in self.button_list:
-                button.draw(self.screen)
-            
-            for button in self.button_list:
-                button.check_click(self.button_list, self.rightScreens)
+                button.draw(self.screen, self.button_list, self.rightScreens)
 
             self.rightScreens.draw(self.screen)
 
