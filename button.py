@@ -68,24 +68,13 @@ class Button:
                         return self.welcome_button(buttons, rightScreen)
                     else:
                         return self.readme_button(buttons, rightScreen)
-        
-        return ("", None)
 
     def play_visualizer(self, text):
         # Place holder for the actual play code
         print("Visualizer is live for ", text)
         time.sleep(5)
 
-    def readme_window(self, text):
-        # Place holder for the actual readme code
-        print("Presenting Algotith ReadMe for ", text)
-
-    def code_window(self, text):
-        # Place holder for the actual Code code
-        print("Presenting Algotith Code for ", text)
-
     def welcome_button(self, buttons, rightScreen):
-        
         for button in buttons:
             button.pressed = False
             button.dynamic_elevation = button.elevation
@@ -94,10 +83,7 @@ class Button:
         # reset all everything
         rightScreen.update('', Button_Type.ReadMeButton)
 
-        return ("", None)
-
     def play_button(self, buttons, rightScreen):
-
         for button in buttons:
             if (button.button_type == Button_Type.AlgoButton and
                 button.pressed == True):
@@ -108,63 +94,48 @@ class Button:
         self.dynamic_elevation = self.elevation
         self.dynamic_top_color = self.top_color
         self.pressed = False
-        return ("", None)
         
     def readme_button(self, buttons, rightScreen):
-        
         val = False
         for button in buttons:
             if (button.button_type == Button_Type.AlgoButton and
                 button.pressed == True):
-                
-                self.readme_window(button.text)
+                # have selected an algorithm and clicked readme button
                 val = True
+                rightScreen.update(self.text, Button_Type.ReadMeButton)
+
             elif button.button_type == Button_Type.CodeButton:
                 button.dynamic_elevation = button.elevation
                 button.dynamic_top_color = button.top_color
-                
                 button.pressed = False
-                
+
+        # clicked code button without selecting an algorithm   
         if not val:
             self.dynamic_elevation = self.elevation
             self.dynamic_top_color = self.top_color
             self.pressed = False
-            return ("", None)
-        else:
-            text = 'Welcome'
-            # reset all everything
-            rightScreen.update(self.text, Button_Type.ReadMeButton)
-            return (text, Screen_Type.ReadMe)
 
     def code_button(self, buttons, rightScreen):
         val = False
         for button in buttons:
             if (button.button_type == Button_Type.AlgoButton and
                 button.pressed == True):
-
-                self.code_window(button.text)
+                # have selected an algorithm and clicked code button
                 val = True
+                rightScreen.update(self.text, Button_Type.CodeButton)
+                
             elif button.button_type == Button_Type.ReadMeButton:
                 button.dynamic_elevation = button.elevation
                 button.dynamic_top_color = button.top_color
                 button.pressed = False
 
+        # clicked code button without selecting an algorithm
         if not val:
             self.dynamic_elevation = self.elevation
             self.dynamic_top_color = self.top_color
             self.pressed = False
-            return ("", None)
-        else:
-            text = 'Welcome'
-            rightScreen.update(self.text, Button_Type.CodeButton)
-            
-            return (text, Screen_Type.Code)
-    
+                      
     def algo_button(self, buttons, rightScreen):
-        text = 'Welcome'
-        # ReadMe for the currently selected algo
-        self.readme_window(self.text)
-
         for button in buttons:
             # Ending a visualizer if it is currently on
             # Turning off all the other algo buttons
@@ -183,10 +154,7 @@ class Button:
                 button.dynamic_elevation = 0
                 button.dynamic_top_color = self.clicked_color
                 button.pressed = True
-
         rightScreen.update(self.text, Button_Type.ReadMeButton)
 
-        print("Algo selected is ", self.text)
-        return (text, Screen_Type.ReadMe)
 
         

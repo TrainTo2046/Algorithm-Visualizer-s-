@@ -21,32 +21,33 @@ class Right_Screen():
         self.font_size = Screen_Attributes.font_size.value
 
         # Top Left Button
-        readMe5 = Right_Screen_Object('Welcome', Screen_Type.ReadMe, [])
-        code5 = Right_Screen_Object('Welcome', Screen_Type.Code, [])
+        readMe1 = Right_Screen_Object('Binary Search', Screen_Type.ReadMe, [])
+        code1 = Right_Screen_Object('Binary Search', Screen_Type.Code, [])
         
-        self.txt_map = {readMe5.name : [readMe5, code5]}
+        self.txt_map = {readMe1.name : [readMe1, code1]}
 
     def drawRightScreen(self, screen):
-        pygame.draw.rect(screen, self.top_color, self.top_rect, self.border_radius)
+        pygame.draw.rect(screen, self.top_color, self.top_rect, border_radius = self.border_radius)
 
     def draw(self, screen):
-        pass
         for key in self.txt_map.keys():
-            self.txt_map[key][0].draw(screen)
-            self.txt_map[key][1].draw(screen)
+            self.txt_map[key][1].draw_text(screen)
+            self.txt_map[key][0].draw_text(screen)
 
     def update(self, name, screen_type):
         for key in self.txt_map.keys():
             if (key == name):
                 line_content = []
-                if self.txt_map[key][0].screen_type == screen_type:
+                # read me txt
+                if screen_type == self.txt_map[key][0].screen_type:
                     line_content = load_readme(name)
                     line_list = self.get_line_list(line_content)
-                    self.txt_map[key][0] = line_list
+                    self.txt_map[key][0].text = line_list
+                # code txt
                 else:
                     line_content = load_code(name)
                     line_list = self.get_line_list(line_content)
-                    self.txt_map[key][1] = line_list    
+                    self.txt_map[key][1].text = line_list    
             else:
                 self.txt_map[key][0].text = []
                 self.txt_map[key][1].text = []
