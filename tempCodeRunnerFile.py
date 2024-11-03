@@ -1,1 +1,1 @@
-border
+            pygame.display.update()

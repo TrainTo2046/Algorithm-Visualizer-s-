@@ -37,7 +37,7 @@ class Algorithm_Visualizer:
                 button.draw(self.screen, self.button_list, self.rightScreens)
 
             self.rightScreens.draw(self.screen)
-
+            
             pygame.display.update()
             self.clock.tick(60)
 

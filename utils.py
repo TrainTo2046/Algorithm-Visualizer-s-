@@ -5,10 +5,16 @@ BASE_README_TXT_PATH = 'AlgoReadMe/'
 BASE_BACKGROUND_IMG_PATH = 'Assets/BackgroundImage.png'
 
 def load_readme(name):
-    path = BASE_README_TXT_PATH + name + ".txt"
+    algo_name = name.split(" ")
+    n = ""
+    for str in algo_name:
+        n += str
+
+    path = BASE_README_TXT_PATH + n + ".txt"
     f = open(path)
     content = f.read().splitlines()
     f.close()
+    
     return content
 
 def load_code(name):

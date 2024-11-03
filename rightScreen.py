@@ -54,7 +54,7 @@ class Right_Screen():
                             readMeTxt5.name: [readMeTxt5,    codeTxt5], readMeTxt6.name: [readMeTxt6,    codeTxt6],
                             readMeTxt7.name: [readMeTxt7,    codeTxt7], readMeTxt8.name: [readMeTxt8,    codeTxt8],
                             readMeTxt9.name: [readMeTxt9,    codeTxt9], readMeTxt10.name: [readMeTxt10,   codeTxt10],
-                            readMeTxt11.name: [readMeTxt11,   codeTxt11], readMeTxt12.name: [readMeTxt11,   codeTxt12]}
+                            readMeTxt11.name: [readMeTxt11,   codeTxt11], readMeTxt12.name: [readMeTxt12,   codeTxt12]}
 
     def drawRightScreen(self, screen):
         pygame.draw.rect(screen, self.top_color, self.top_rect, border_radius = self.border_radius)
@@ -73,6 +73,7 @@ class Right_Screen():
                     line_list = self.get_line_list(line_content, screen_type)
                     self.txt_map[key][0].text = line_list
                     self.txt_map[key][1].text = []
+
                 # code txt
                 else:
                     line_content = load_code(name)
@@ -86,7 +87,9 @@ class Right_Screen():
     def get_line_list(self, line_content, screen_type):
         lst = []
         offset = 0
-        font_size = self.font_size_readme_txt if screen_type == Screen_Type.ReadMe else self.font_size_code_txt
+        font_size = self.font_size_code_txt
+        if screen_type == Screen_Type.ReadMe:
+            font_size = self.font_size_readme_txt
 
         gui_font = pygame.font.SysFont("marquee", font_size, bold=False)
         for line in line_content: 
