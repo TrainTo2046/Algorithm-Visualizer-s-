@@ -1,19 +1,31 @@
 Topological Sort
 
-Lorem ipsum dolor sit amet,
-consectetur adipiscing elit.
-Vestibulum tempor consectetur
-orci. Duis ultricies nunc 
-faucibus porttitor iaculis. 
+Need a Tree/ Directed Acyclic Graph
+- Produces a Topological Odering (TO)
 
-Vestibulum ut magna quis dui 
-sodales facilisis. Vestibulum 
-tincidunt cursus quam, a 
-pretium purus. Integer aliquet,
-rna ut fermentum commodo, justo 
-diam ornare libero, in dapibus
-turpis urna a lectus. Donec magna
-massa, aliquet eget ligula a,
-maximus blandit purus.
+Step 1: Pick an unvisited node
+Step 2: DFS from the node to all 
+        unvisited nodes
+Step 3: recursive callback, add node
+        in Ordering in reverse order
 
-Curabitur blandit feugiat lacinia.
+graph: {A: [D], B: [D], C: [A, B],
+        D: [G, H], E: [A, D, F],
+        F: [J, K], G: [I], H: [J, I],
+        I: [L], J: [M, L], K: [J], 
+        L: [], M: []}
+visited = [], Order = []
+
+1)  start: H, DFS(H)
+-   visited: [H, J, M, L, I]
+-   Order: [M, L, J, I H]
+2)  start: E, DFS(E)
+-   visited: [..., I, E, A, D, G, F, K]
+-   Order: [..., H, G, D, A, K, F, E]
+3)  start: C, DFS(C)
+-   visited: [..., K, C, B]
+-   Order: [..., E, B, C]
+
+Order: [M,L,J,I,H,G,D,A,K,F,E,B,C]
+valid topological ordering: 
+[C,B,E,F,K,A,D,G,H,I,J,L,M]

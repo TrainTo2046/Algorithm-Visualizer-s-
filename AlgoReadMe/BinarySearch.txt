@@ -1,19 +1,30 @@
 Binary Search
 
-Lorem ipsum dolor sit amet,
-consectetur adipiscing elit.
-Vestibulum tempor consectetur
-orci. Duis ultricies nunc 
-faucibus porttitor iaculis. 
+*** arr IS SORTED
+arr = [a, b, c, ...], target = j
+l = 0, r = len(arr) - 1
+Step 1: Find mid element
+    -> m = (l + r) // 2
 
-Vestibulum ut magna quis dui 
-sodales facilisis. Vestibulum 
-tincidunt cursus quam, a 
-pretium purus. Integer aliquet,
-rna ut fermentum commodo, justo 
-diam ornare libero, in dapibus
-turpis urna a lectus. Donec magna
-massa, aliquet eget ligula a,
-maximus blandit purus.
+Step 2: Check the middle element
+    if arr[m] = target: return m
+    elif arr[m] > target: r = m - 1
+    elif arr[m] < target: l = m + 1
 
-Curabitur blandit feugiat lacinia.
+repeat Step 1 and Step 2 until result
+Step 3: No target found
+    if l > r: return -1
+
+arr = [2, 5, 8, 12, 16, 23, 38, 56]
+target = 16
+l = 0, r = 7
+1)  m = (0 + 7) // 2 = 3
+    arr[3] = 12
+    12 < 16 -> l = m + 1 = 4
+
+2)  m = (4 + 7) // 2 = 5
+    arr[5] = 23
+    23 > 16 -> r = m - 1 = 4
+
+3)  m = (4 + 4) // 2 = 4
+    arr[4] = 16 -> return 4

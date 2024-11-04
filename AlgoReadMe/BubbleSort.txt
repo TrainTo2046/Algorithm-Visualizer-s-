@@ -1,19 +1,31 @@
 Bubble Sort
 
-Lorem ipsum dolor sit amet,
-consectetur adipiscing elit.
-Vestibulum tempor consectetur
-orci. Duis ultricies nunc 
-faucibus porttitor iaculis. 
+n = len(arr) - 1
+Step 1: Swaps
+-   start at i = 1
+-   if arr[i] < arr[i - 1]: swap
+-   go till i == n
 
-Vestibulum ut magna quis dui 
-sodales facilisis. Vestibulum 
-tincidunt cursus quam, a 
-pretium purus. Integer aliquet,
-rna ut fermentum commodo, justo 
-diam ornare libero, in dapibus
-turpis urna a lectus. Donec magna
-massa, aliquet eget ligula a,
-maximus blandit purus.
+Step 2: Multiple iteration
+-   n = n - 1
+-   Step 1
 
-Curabitur blandit feugiat lacinia.
+Step 3: End
+-   n == 0 then stop
+
+arr = [5, 6, 1, 3]
+1st iteration
+n = 3
+[5, 6, 1, 3]    no swap
+[5, 1, 6, 3]    swap(1, 6)
+[5, 1, 3, 6]    swap(3, 6)
+
+2nd iteration
+n = 2
+[1, 3, 5, 6]
+
+3rd iteration
+n = 1
+[1, 3, 5, 6]
+
+n = 0: Stop

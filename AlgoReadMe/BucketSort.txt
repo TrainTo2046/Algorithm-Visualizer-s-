@@ -1,19 +1,30 @@
 Bucket Sort
 
-Lorem ipsum dolor sit amet,
-consectetur adipiscing elit.
-Vestibulum tempor consectetur
-orci. Duis ultricies nunc 
-faucibus porttitor iaculis. 
+n = len(arr) = 5
+arr = [0.78, 0.39, 0.26, 0.12, 0.23]
 
-Vestibulum ut magna quis dui 
-sodales facilisis. Vestibulum 
-tincidunt cursus quam, a 
-pretium purus. Integer aliquet,
-rna ut fermentum commodo, justo 
-diam ornare libero, in dapibus
-turpis urna a lectus. Donec magna
-massa, aliquet eget ligula a,
-maximus blandit purus.
+Step 1: Create n empty bucket
+bucket = [[], [], [], [], []]
 
-Curabitur blandit feugiat lacinia.
+Step 2: Insert element into bucket
+        based on their range
+- int(arr[i] * n) = j
+    -> bucket[j] = [arr[i], ...]
+
+- int(arr[0] * 5) = 3    
+-> bucket[3] = [arr[0]]   
+- int(arr[1] * 5) = 1
+-> bucket[1] = [arr[1]]
+
+bucket = [[0.12], [0.39, 0.26, 0.23], 
+            [], [0.78], []]
+
+Step 3: Sort each bucket
+bucket = [[0.12], [0.23, 0.26, 0.39], 
+            [], [0.78], []]
+
+Step 4: Put each element back into arr
+arr = [0.12, 0.23, 0.26, 0.39, 0.78]
+
+Leet Code Problems:
+- Top K Frequency Elements

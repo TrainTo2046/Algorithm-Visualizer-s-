@@ -1,19 +1,31 @@
 Dijkstra Algorithm
 
-Lorem ipsum dolor sit amet,
-consectetur adipiscing elit.
-Vestibulum tempor consectetur
-orci. Duis ultricies nunc 
-faucibus porttitor iaculis. 
+-> shortest distance from one node to
+    every other node
 
-Vestibulum ut magna quis dui 
-sodales facilisis. Vestibulum 
-tincidunt cursus quam, a 
-pretium purus. Integer aliquet,
-rna ut fermentum commodo, justo 
-diam ornare libero, in dapibus
-turpis urna a lectus. Donec magna
-massa, aliquet eget ligula a,
-maximus blandit purus.
+Step 1: start at some node
+Step 2: get all outgoing node
+Step 3: pick the smallest and unvisited
+        outgoing node
+        -> min(curr + next, next)
+Step 4: Set the node to visited
+Step 5: Repeat until visited all nodes
 
-Curabitur blandit feugiat lacinia.
+graph: {A: [B: 4, C: 2], 
+        B: [C: 3, D: 2, E: 3],
+        C: [B: 3, D: 4, E: 5],
+        D: [], E: [D: 1]}
+
+start = A
+   pick     A   C   B   D   E   
+A   0                           |0
+B   inf     4   3               |3
+C   inf     2                   |2
+D   inf         6   5           |5
+E   inf         7   6           |6
+
+when we pick C, distance from A to D:
+A to C = 2 then C to D = 4 so A to D = 6
+
+shortest path from A to other nodes:
+A: [C: 2, B: 3, D: 5, E: 6] 

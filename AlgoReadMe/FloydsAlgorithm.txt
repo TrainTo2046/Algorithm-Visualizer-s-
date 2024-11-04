@@ -1,19 +1,24 @@
 Floyds Algorithm
 
-Lorem ipsum dolor sit amet,
-consectetur adipiscing elit.
-Vestibulum tempor consectetur
-orci. Duis ultricies nunc 
-faucibus porttitor iaculis. 
+Cycle Detection
 
-Vestibulum ut magna quis dui 
-sodales facilisis. Vestibulum 
-tincidunt cursus quam, a 
-pretium purus. Integer aliquet,
-rna ut fermentum commodo, justo 
-diam ornare libero, in dapibus
-turpis urna a lectus. Donec magna
-massa, aliquet eget ligula a,
-maximus blandit purus.
+Two Parts
 
-Curabitur blandit feugiat lacinia.
+Part 1: Find the point of collision
+slow pointers: moves 1 position
+fast pointers: moves 2 position
+
+move pointers until slow == fast
+
+Part 2: Find the start of cycle
+slow2 pointer: 
+-   moves 1 position from head
+slow pointer: 
+-   moves 1 position
+
+move pointers until slow == slow2
+
+the point where slow and slow2 
+meet is the start of the cycle in the 
+over all list
+        

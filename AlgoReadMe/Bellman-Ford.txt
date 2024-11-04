@@ -1,19 +1,21 @@
 Bellman-Ford Algorithm
 
-Lorem ipsum dolor sit amet,
-consectetur adipiscing elit.
-Vestibulum tempor consectetur
-orci. Duis ultricies nunc 
-faucibus porttitor iaculis. 
+Shortest distance from one node to 
+every other node
 
-Vestibulum ut magna quis dui 
-sodales facilisis. Vestibulum 
-tincidunt cursus quam, a 
-pretium purus. Integer aliquet,
-rna ut fermentum commodo, justo 
-diam ornare libero, in dapibus
-turpis urna a lectus. Donec magna
-massa, aliquet eget ligula a,
-maximus blandit purus.
+-   Like Dijkstra's Algorthm but can
+    also do negative numbers
+-   n verticies = (n - 1) iterations
 
-Curabitur blandit feugiat lacinia.
+graph = {   S:[A:10, E:8], A:[C:2], 
+            B:[A:1], C:[B:-2], 
+            D:[C:-1, A:-4], E:[D:1]}
+start = S
+S   A   B   C   D   E
+0   inf inf inf inf inf
+0   10  10  12  9   8   1st iter
+0   5   10  8   9   8   2nd iter
+0   5   5   7   9   9   3rd iter
+0   5   5   7   9   8   4th iter
+
+T: O(V * E)

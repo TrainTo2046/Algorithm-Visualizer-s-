@@ -1,19 +1,32 @@
-Kruskal Algorithm
+Kruskal Algo (Minimum Spanning T)
 
-Lorem ipsum dolor sit amet,
-consectetur adipiscing elit.
-Vestibulum tempor consectetur
-orci. Duis ultricies nunc 
-faucibus porttitor iaculis. 
+Step 1: Sort all the edges
+Step 2: Pick the smallest edge that
+        doesn't create a cycle
+Step 3: Repeate until all nodes are
+        visited
 
-Vestibulum ut magna quis dui 
-sodales facilisis. Vestibulum 
-tincidunt cursus quam, a 
-pretium purus. Integer aliquet,
-rna ut fermentum commodo, justo 
-diam ornare libero, in dapibus
-turpis urna a lectus. Donec magna
-massa, aliquet eget ligula a,
-maximus blandit purus.
+undirected graph
+graph: {A: [D: 3, B: 2, C: 3], 
+        B: [A: 2, C: 4, E: 3],
+        C: [A: 3, B: 4, D: 5, E: 1],
+        D: [A: 3, C: 5],
+        E: [B: 3, C: 1]}
 
-Curabitur blandit feugiat lacinia.
+edges: {(A, D):3, (A, B):2, (A, C):3,
+        (B, C):4, (B, E):3, (C, D):5,
+        (C, E):1}
+
+Step 1: sort(edges) = 
+edges: {(C, E):1, (A, B):2, (A, D):3,
+        (A, C):3, (B, E):3,
+        (B, C):4, (C, D):5}
+
+Step 2: visited = [(C, E)]
+
+Step 3: visited = [(C, E), (A, B), (A, D),
+                    (A, C)]
+        (B, E), (B, C), (C, D) not included
+        because they create cycles
+
+

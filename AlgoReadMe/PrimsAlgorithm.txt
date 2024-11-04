@@ -1,19 +1,30 @@
-Prims Algorithm
+Prims Algo (Minimum Spanning Tree)
 
-Lorem ipsum dolor sit amet,
-consectetur adipiscing elit.
-Vestibulum tempor consectetur
-orci. Duis ultricies nunc 
-faucibus porttitor iaculis. 
+Minimum weight graph with no cycle
 
-Vestibulum ut magna quis dui 
-sodales facilisis. Vestibulum 
-tincidunt cursus quam, a 
-pretium purus. Integer aliquet,
-rna ut fermentum commodo, justo 
-diam ornare libero, in dapibus
-turpis urna a lectus. Donec magna
-massa, aliquet eget ligula a,
-maximus blandit purus.
+Step 1: Pick a node [A]
+Step 2: Pick the smallest edge [B] in 
+        the unvisited nodes
+Step 3: Look at all the unvisited nodes
+        from A and B
+Step 4: Pick the smallest edge that is
+        not visited
+Step 5: Repeat
 
-Curabitur blandit feugiat lacinia.
+undirected graph
+graph: {A: [D: 3, B: 2, C: 3], 
+        B: [A: 2, C: 4, E: 3],
+        C: [A: 3, B: 4, D: 5, E: 1],
+        D: [A: 3, C: 5],
+        E: [B: 3, C: 1]}
+
+start = A, visted = [A]
+unvisited edges = [D: 3, B: 2, C: 3]
+Pick B: 2, visted = [A, B]
+unvisited edges = [D: 3, C: 3, C: 4, E: 3]
+Pick C: 3, visted = [A, B, C]
+unvisited edges = [D: 3, E: 3, D: 5, E: 1]
+Pick E: 1, visited = [A, B, C, E]
+unvisited edges = [D: 3, D: 5]
+Pick D: 3, visited = [A, B, C, E, D]
+unvisited edges = []

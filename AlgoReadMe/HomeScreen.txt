@@ -1,19 +1,24 @@
-Home Screen
+Algorithm Visualizer program
 
-Lorem ipsum dolor sit amet,
-consectetur adipiscing elit.
-Vestibulum tempor consectetur
-orci. Duis ultricies nunc 
-faucibus porttitor iaculis. 
+WELCOME!!!
+This program was designed to help
+you visualize various Algorithm to
+teach you how it works and help
+you learn new Algorithm.
 
-Vestibulum ut magna quis dui 
-sodales facilisis. Vestibulum 
-tincidunt cursus quam, a 
-pretium purus. Integer aliquet,
-rna ut fermentum commodo, justo 
-diam ornare libero, in dapibus
-turpis urna a lectus. Donec magna
-massa, aliquet eget ligula a,
-maximus blandit purus.
+This algorithms listed in this
+program are the main ones that are
+used in LC problems.
 
-Curabitur blandit feugiat lacinia.
+You can select an Algorithm,
+Read about what they do
+Read the code to the Algorithm
+See how they work by clicking the
+Play button
+
+You can click on the Algo Visualizer
+button to reset everything.
+
+- created by
+Jenish Lakhemaru
+
