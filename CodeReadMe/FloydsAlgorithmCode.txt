@@ -1,24 +1,23 @@
-// Presence of cycle
-public boolean hasCycle(ListNode head) {
-    ListNode slow = head;
-    ListNode fast = head;
+Floyds Algorithm pseudocode
 
-    while(fast != null && fast.next != null){
-        slow = slow.next;
-        fast = fast.next.next;
-        if(slow==fast){
-            return true;
-        }
-    }
+Cycle Detection
+function hasCycle(head):
+    slow = head
+    fast = head
 
-    return false;
-}
+    while ( fast != null and 
+            fast.next != null):
+        if (slow==fast):
+            return true
 
-// Assuming there is a cycle present and slow and fast are point to their meeting point
-slow = head;
-while(slow!=fast){
-    slow = slow.next;
-    fast = fast.next;
-}
+    return false
+
+Find Start of Cycle
+# if hasCycle(head) == true
+
+slow2 = head;
+while (slow != slow2):
+    slow = slow.next
+    slow = slow.next
 
 return slow; // the starting point of the cycle.
