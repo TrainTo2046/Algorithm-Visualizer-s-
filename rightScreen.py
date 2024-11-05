@@ -1,7 +1,7 @@
 import pygame
 from rightScreenObject import Right_Screen_Object
 from attributes import Screen_Type, Screen_Attributes
-from utils import load_readme, load_code
+
 
 pygame.init()
 class Right_Screen():
@@ -16,15 +16,8 @@ class Right_Screen():
         self.top_color = Screen_Attributes.top_color.value
         self.border_radius = Screen_Attributes.border_radius.value
 
-        # Text
-        self.font_color = Screen_Attributes.font_color.value
-        self.font_size_readme_txt = Screen_Attributes.font_size_readme_txt.value
-        self.font_size_code_txt = Screen_Attributes.font_size_code_txt.value
-
         # Home Text
-        line_content = load_readme('Home Screen')
-        home_txt = self.get_line_list(line_content, Screen_Type.Home)
-        self.homeTxt = Right_Screen_Object('Home Screen',  Screen_Type.Home, home_txt)
+        self.homeTxt = Right_Screen_Object('Home Screen',  Screen_Type.Home, [])
         self.home_screen = True
        
         # ReadMe
@@ -67,6 +60,7 @@ class Right_Screen():
 
     def draw(self, screen):
         if self.home_screen:
+            self.homeTxt.text = self.homeTxt.txt_file
             self.homeTxt.draw_text(screen)
 
         for key in self.txt_map.keys():
@@ -76,40 +70,24 @@ class Right_Screen():
     def update(self, name, screen_type):
         if screen_type == Screen_Type.Home:
             self.home_screen = True
+            self.homeTxt.text = self.homeTxt.txt_file
 
         for key in self.txt_map.keys():
             if (key == name):
                 # read me txt
                 if screen_type == self.txt_map[key][0].screen_type:
-                    line_content = load_readme(name)
-                    line_list = self.get_line_list(line_content, screen_type)
-                    self.txt_map[key][0].text = line_list
+                    self.txt_map[key][0].text = self.txt_map[key][0].txt_file
                     self.txt_map[key][1].text = []
 
                 # code txt
                 else:
-                    line_content = load_code(name)
-                    line_list = self.get_line_list(line_content, screen_type)
-                    self.txt_map[key][1].text = line_list
+                    self.txt_map[key][1].text = self.txt_map[key][1].txt_file
                     self.txt_map[key][0].text = []
                 
                 self.home_screen = False
+                self.homeTxt.text = []
             else:
                 self.txt_map[key][0].text = []
                 self.txt_map[key][1].text = []
 
-    def get_line_list(self, line_content, screen_type):
-        lst = []
-        offset = 0
-        font_size = self.font_size_code_txt
-        if screen_type == Screen_Type.ReadMe or Screen_Type.Home:
-            font_size = self.font_size_readme_txt
-
-        gui_font = pygame.font.SysFont("marquee", font_size, bold=False)
-        for line in line_content: 
-            text_surf = gui_font.render(line, True, self.font_color)
-            text_rect = text_surf.get_rect(topleft = (self.x_value + 10, self.y_value + 10 + offset))
-            lst.append([text_surf, text_rect])
-            offset += 20
-
-        return lst
+    
