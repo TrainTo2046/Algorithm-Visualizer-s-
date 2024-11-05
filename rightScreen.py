@@ -21,6 +21,12 @@ class Right_Screen():
         self.font_size_readme_txt = Screen_Attributes.font_size_readme_txt.value
         self.font_size_code_txt = Screen_Attributes.font_size_code_txt.value
 
+        # Home Text
+        line_content = load_readme('Home Screen')
+        home_txt = self.get_line_list(line_content, Screen_Type.Home)
+        self.homeTxt = Right_Screen_Object('Home Screen',  Screen_Type.Home, home_txt)
+        self.home_screen = True
+       
         # ReadMe
         readMeTxt1 = Right_Screen_Object('Binary Search',  Screen_Type.ReadMe, [])
         readMeTxt2 = Right_Screen_Object('Bubble Sort',  Screen_Type.ReadMe, [])
@@ -60,11 +66,17 @@ class Right_Screen():
         pygame.draw.rect(screen, self.top_color, self.top_rect, border_radius = self.border_radius)
 
     def draw(self, screen):
+        if self.home_screen:
+            self.homeTxt.draw_text(screen)
+
         for key in self.txt_map.keys():
             self.txt_map[key][0].draw_text(screen)
             self.txt_map[key][1].draw_text(screen)
 
     def update(self, name, screen_type):
+        if screen_type == Screen_Type.Home:
+            self.home_screen = True
+
         for key in self.txt_map.keys():
             if (key == name):
                 # read me txt
@@ -80,6 +92,8 @@ class Right_Screen():
                     line_list = self.get_line_list(line_content, screen_type)
                     self.txt_map[key][1].text = line_list
                     self.txt_map[key][0].text = []
+                
+                self.home_screen = False
             else:
                 self.txt_map[key][0].text = []
                 self.txt_map[key][1].text = []
@@ -88,7 +102,7 @@ class Right_Screen():
         lst = []
         offset = 0
         font_size = self.font_size_code_txt
-        if screen_type == Screen_Type.ReadMe:
+        if screen_type == Screen_Type.ReadMe or Screen_Type.Home:
             font_size = self.font_size_readme_txt
 
         gui_font = pygame.font.SysFont("marquee", font_size, bold=False)

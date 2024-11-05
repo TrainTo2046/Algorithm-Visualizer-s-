@@ -56,6 +56,7 @@ class TL_Button_Attributes(Enum):
 class Screen_Type(Enum):
     ReadMe: int = 1
     Code: int = 2
+    Home: int = 3
 
 # Screen Attributes
 class Screen_Attributes(Enum):

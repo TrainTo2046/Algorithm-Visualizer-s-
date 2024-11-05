@@ -18,7 +18,3 @@ Play button
 
 You can click on the Algo Visualizer
 button to reset everything.
-
-- created by
-Jenish Lakhemaru
-

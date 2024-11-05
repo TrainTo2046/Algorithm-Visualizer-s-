@@ -68,13 +68,13 @@ class Button:
                         return self.readme_button(buttons, rightScreen)
 
     def welcome_button(self, buttons, rightScreen):
+        # reset all everything
         for button in buttons:
             button.pressed = False
             button.dynamic_elevation = button.elevation
             button.dynamic_top_color = button.top_color
         
-        # reset all everything
-        rightScreen.update('', Screen_Type.ReadMe)
+        rightScreen.update('', Screen_Type.Home)
 
     def play_button(self, buttons, rightScreen):
         for button in buttons:
