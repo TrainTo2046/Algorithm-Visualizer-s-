@@ -27,6 +27,5 @@ function dfs(i, at, V, ordering, graph):
     if V[edge.to] == false:
       i = dfs(i, edge.to, V, ordering, 
               graph)
-
   ordering[i] = at
   return i - 1
