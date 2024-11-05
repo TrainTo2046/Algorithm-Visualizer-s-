@@ -21,11 +21,11 @@ while heap:
   # get all outgoing nodes
   lst = G[node]
   for edge in lst:
-    # heap.push((value, edge))
-    # edge_dis = distance from node to edge
+    # edge_dis = dist from node to edge
     edge_dis = G[node][edge]
-    # value = min distance from start to edge
-    value = min(dist[edge], dist[node] + edge_dis)
+    # value = min dist from start to edge
+    value = 
+    min(dist[edge], dist[node] + edge_dis)
     dist[edge] = value
     heap.push((value, edge))
 return dist

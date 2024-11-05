@@ -3,7 +3,8 @@ Topological sort pseudocode
 T: O(V + E)
 S: O(V + E)
 
-# Assumption: graph is stored as adjacency list
+# Assumption: graph is stored as 
+  adjacency list
 funnction topsort(graph):
   N = graph.numberOfNodes()
   V = [false, ..., false] # Length N
@@ -20,10 +21,12 @@ funnction topsort(graph):
 function dfs(i, at, V, ordering, graph):
   V[at] = true
 
-  edges = graph.getEdgesOutFromNode(at)
+  edges = 
+    graph.getEdgesOutFromNode(at)
   for edge in edges:
     if V[edge.to] == false:
-      i = dfs(i, edge.to, V, ordering, graph)
+      i = dfs(i, edge.to, V, ordering, 
+              graph)
 
   ordering[i] = at
   return i - 1

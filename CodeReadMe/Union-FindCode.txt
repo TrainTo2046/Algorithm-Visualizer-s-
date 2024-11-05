@@ -20,4 +20,5 @@ functin union(x, y):
     Parent[ry] = rx
   else:
     Parent[rx] = ry
-    if rank(rx) == rank(ry): rank(ry) = rank(ry) + 1
+    if rank(rx) == rank(ry): 
+      rank(ry) = rank(ry) + 1

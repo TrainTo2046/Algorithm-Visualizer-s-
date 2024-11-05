@@ -2,7 +2,8 @@ Bellman-Ford pseudocode
 
 T: O(V * E)
 
-input: Direct graph G with edge length
+input: 
+Direct graph G with edge length
 
 dist = {}
 n = # of nodes
@@ -18,8 +19,6 @@ repeat (n - 1) times:
     Edges = G[node]
     for edge in Edges:
       update(node, edge)
-
-
 
 function update(node, edge):
   # curr minimum distance

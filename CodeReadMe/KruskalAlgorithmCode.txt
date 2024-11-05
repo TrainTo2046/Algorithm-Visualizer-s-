@@ -9,7 +9,9 @@ function maskeset(x):
   parent(x) = x
   rank(x) = 0
 
-input: undirected grpah G = (V, E) with weight wE
+input: 
+undirected graph 
+G = (V, E) with weight
 output: MST defined by edges x
 
 for u in V: makeset(u)

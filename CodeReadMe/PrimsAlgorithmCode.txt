@@ -6,8 +6,8 @@ S: O(N)
 prim(graph):
   mst = []
   visited = []
-  startVertex = first vertex in graph
-  heap = [(0, startVertex, startVertex)]
+  start = first vertex in graph
+  heap = [(0, start, start)]
 
   while heap:
     # pops the current smallest element
@@ -27,5 +27,4 @@ prim(graph):
       w = weight from (node to edge)
       heap.push((w, node, edge))
 
-  mst.remove((0, startVertex, startVertex))
   return mst

@@ -20,4 +20,5 @@ while (slow != slow2):
     slow = slow.next
     slow = slow.next
 
-return slow; // the starting point of the cycle.
+# the starting point of the cycle.
+return slow
