@@ -5,7 +5,9 @@ from utils import load_readme, load_code
 
 pygame.init()
 class Right_Screen():
-    def __init__(self):
+    def __init__(self, program):
+        self.program = program
+
         # Right Screen
         self.x_value = Screen_Attributes.x_value.value
         self.y_value = Screen_Attributes.y_value.value
@@ -24,36 +26,36 @@ class Right_Screen():
         # Home Text
         line_content = load_readme('Home Screen')
         home_txt = self.get_line_list(line_content, Screen_Type.Home)
-        self.homeTxt = Right_Screen_Object('Home Screen',  Screen_Type.Home, home_txt)
+        self.homeTxt = Right_Screen_Object(self.program, 'Home Screen',  Screen_Type.Home, home_txt)
         self.home_screen = True
        
         # ReadMe
-        readMeTxt1 = Right_Screen_Object('Binary Search',  Screen_Type.ReadMe, [])
-        readMeTxt2 = Right_Screen_Object('Bubble Sort',  Screen_Type.ReadMe, [])
-        readMeTxt3 = Right_Screen_Object('Topological Sort',  Screen_Type.ReadMe, [])
-        readMeTxt4 = Right_Screen_Object('BFS',  Screen_Type.ReadMe, [])
-        readMeTxt5 = Right_Screen_Object('DFS', Screen_Type.ReadMe, [])
-        readMeTxt6 = Right_Screen_Object('Floyds Algorithm', Screen_Type.ReadMe, [])
-        readMeTxt7 = Right_Screen_Object('Bucket Sort', Screen_Type.ReadMe, [])
-        readMeTxt8 = Right_Screen_Object('Union-Find', Screen_Type.ReadMe, [])
-        readMeTxt9 = Right_Screen_Object('Dijkstra Algorithm', Screen_Type.ReadMe, [])
-        readMeTxt10 = Right_Screen_Object('Prims Algorithm', Screen_Type.ReadMe, [],)
-        readMeTxt11 = Right_Screen_Object('Kruskal Algorithm', Screen_Type.ReadMe, [])
-        readMeTxt12 = Right_Screen_Object('Bellman-Ford', Screen_Type.ReadMe, [])
+        readMeTxt1 = Right_Screen_Object(self.program, 'Binary Search',  Screen_Type.ReadMe, [])
+        readMeTxt2 = Right_Screen_Object(self.program, 'Bubble Sort',  Screen_Type.ReadMe, [])
+        readMeTxt3 = Right_Screen_Object(self.program, 'Topological Sort',  Screen_Type.ReadMe, [])
+        readMeTxt4 = Right_Screen_Object(self.program, 'BFS',  Screen_Type.ReadMe, [])
+        readMeTxt5 = Right_Screen_Object(self.program, 'DFS', Screen_Type.ReadMe, [])
+        readMeTxt6 = Right_Screen_Object(self.program, 'Floyds Algorithm', Screen_Type.ReadMe, [])
+        readMeTxt7 = Right_Screen_Object(self.program, 'Bucket Sort', Screen_Type.ReadMe, [])
+        readMeTxt8 = Right_Screen_Object(self.program, 'Union-Find', Screen_Type.ReadMe, [])
+        readMeTxt9 = Right_Screen_Object(self.program, 'Dijkstra Algorithm', Screen_Type.ReadMe, [])
+        readMeTxt10 = Right_Screen_Object(self.program, 'Prims Algorithm', Screen_Type.ReadMe, [],)
+        readMeTxt11 = Right_Screen_Object(self.program, 'Kruskal Algorithm', Screen_Type.ReadMe, [])
+        readMeTxt12 = Right_Screen_Object(self.program, 'Bellman-Ford', Screen_Type.ReadMe, [])
 
         # Code
-        codeTxt1 = Right_Screen_Object('Binary Search',  Screen_Type.Code, [])
-        codeTxt2 = Right_Screen_Object('Bubble Sort',  Screen_Type.Code, [])
-        codeTxt3 = Right_Screen_Object('Topological Sort',  Screen_Type.Code, [])
-        codeTxt4 = Right_Screen_Object('BFS',  Screen_Type.Code, [])
-        codeTxt5 = Right_Screen_Object('DFS', Screen_Type.Code, [])
-        codeTxt6 = Right_Screen_Object('Floyds Algorithm', Screen_Type.Code, [])
-        codeTxt7 = Right_Screen_Object('Bucket Sort', Screen_Type.Code, [])
-        codeTxt8 = Right_Screen_Object('Union-Find', Screen_Type.Code, [])
-        codeTxt9 = Right_Screen_Object('Dijkstra Algorithm', Screen_Type.Code, [])
-        codeTxt10 = Right_Screen_Object('Prims Algorithm', Screen_Type.Code, [],)
-        codeTxt11 = Right_Screen_Object('Kruskal Algorithm', Screen_Type.Code, [])
-        codeTxt12 = Right_Screen_Object('Bellman-Ford', Screen_Type.Code, [])
+        codeTxt1 = Right_Screen_Object(self.program, 'Binary Search',  Screen_Type.Code, [])
+        codeTxt2 = Right_Screen_Object(self.program, 'Bubble Sort',  Screen_Type.Code, [])
+        codeTxt3 = Right_Screen_Object(self.program, 'Topological Sort',  Screen_Type.Code, [])
+        codeTxt4 = Right_Screen_Object(self.program, 'BFS',  Screen_Type.Code, [])
+        codeTxt5 = Right_Screen_Object(self.program, 'DFS', Screen_Type.Code, [])
+        codeTxt6 = Right_Screen_Object(self.program, 'Floyds Algorithm', Screen_Type.Code, [])
+        codeTxt7 = Right_Screen_Object(self.program, 'Bucket Sort', Screen_Type.Code, [])
+        codeTxt8 = Right_Screen_Object(self.program, 'Union-Find', Screen_Type.Code, [])
+        codeTxt9 = Right_Screen_Object(self.program, 'Dijkstra Algorithm', Screen_Type.Code, [])
+        codeTxt10 = Right_Screen_Object(self.program, 'Prims Algorithm', Screen_Type.Code, [],)
+        codeTxt11 = Right_Screen_Object(self.program, 'Kruskal Algorithm', Screen_Type.Code, [])
+        codeTxt12 = Right_Screen_Object(self.program, 'Bellman-Ford', Screen_Type.Code, [])
         
         self.txt_map = {    readMeTxt1.name: [readMeTxt1,    codeTxt1], readMeTxt2.name: [readMeTxt2,    codeTxt2],
                             readMeTxt3.name: [readMeTxt3,    codeTxt3], readMeTxt4.name: [readMeTxt4,    codeTxt4],
@@ -62,16 +64,17 @@ class Right_Screen():
                             readMeTxt9.name: [readMeTxt9,    codeTxt9], readMeTxt10.name: [readMeTxt10,   codeTxt10],
                             readMeTxt11.name: [readMeTxt11,   codeTxt11], readMeTxt12.name: [readMeTxt12,   codeTxt12]}
 
-    def drawRightScreen(self, screen):
+    def drawRightScreen(self):
+        screen = self.program.screen
         pygame.draw.rect(screen, self.top_color, self.top_rect, border_radius = self.border_radius)
 
-    def draw(self, screen):
+    def draw(self):
         if self.home_screen:
-            self.homeTxt.draw_text(screen)
+            self.homeTxt.draw_text()
 
         for key in self.txt_map.keys():
-            self.txt_map[key][0].draw_text(screen)
-            self.txt_map[key][1].draw_text(screen)
+            self.txt_map[key][0].draw_text()
+            self.txt_map[key][1].draw_text()
 
     def update(self, name, screen_type):
         if screen_type == Screen_Type.Home:

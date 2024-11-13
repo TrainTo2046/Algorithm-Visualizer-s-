@@ -4,7 +4,7 @@ T: O(logN) -> height of tree
 S: O(N)
 
 Initialize with Parent[i] = i
-Initialize with rank[i] = 0
+Initialize with rank[i] = 1
 
 function find(x):
   if Parent[x] != x:
@@ -12,7 +12,7 @@ function find(x):
   else:
     return x
 
-functin union(x, y):
+function union(x, y):
   rx = find(x)
   ry = find(y)
   if rx == ry: return

@@ -71,3 +71,14 @@ class Screen_Attributes(Enum):
     border_radius: int = 5
     font_size_readme_txt: int = 25
     font_size_code_txt: int = 20
+
+# Middle Screen Attributes
+class Middle_Screen(Enum):
+    width: int = 453
+    height: int = 705
+    x_value: int = 217
+    y_value: int = 44
+
+    color_name = '#7C9AD6'
+
+    border_radius: int = 5

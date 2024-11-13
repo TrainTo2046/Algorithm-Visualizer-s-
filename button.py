@@ -1,8 +1,11 @@
 import pygame
 from attributes import Button_Type, Screen_Type
+from utils import load_name
 
 class Button:
-    def __init__(self, text, pos, button_design, button_type): # pos = (x, y)
+    def __init__(self, program, text, pos, button_design, button_type): # pos = (x, y)
+        self.program = program
+
         # Core attributes
         self.pressed = False
         self.original_y_pos = pos[1]
@@ -34,7 +37,9 @@ class Button:
         self.text_surf = gui_font.render(text, True, '#FFFFFF')
         self.text_rect = self.text_surf.get_rect(center = self.top_rect.center)
 
-    def draw(self, screen, button_list, rightScreens): # buttons: [List]
+    def draw(self): # buttons: [List]
+        screen = self.program.screen
+
         # elevation Logic
         self.top_rect.y = self.original_y_pos - self.dynamic_elevation
         self.text_rect.center = self.top_rect.center
@@ -45,9 +50,12 @@ class Button:
         pygame.draw.rect(screen, self.bottom_color, self.bottom_rect, border_radius = self.border_raidus)
         pygame.draw.rect(screen, self.dynamic_top_color, self.top_rect, border_radius = self.border_raidus)
         screen.blit(self.text_surf, self.text_rect)
-        self.check_click(button_list, rightScreens)
+        self.check_click()
 
-    def check_click(self, buttons, rightScreen):
+    def check_click(self):
+        buttons = self.program.button_list
+        rightScreen = self.program.rightScreens
+
         mouse_pos = pygame.mouse.get_pos()
         if self.top_rect.collidepoint(mouse_pos):
             if pygame.mouse.get_pressed()[0]:
@@ -57,7 +65,7 @@ class Button:
             else:
                 if self.pressed == True:
                     if self.button_type == Button_Type.PlayButton:
-                        return self.play_button(buttons, rightScreen)
+                        return self.play_button(buttons)
                     elif self.button_type == Button_Type.AlgoButton:
                         return self.algo_button(buttons, rightScreen)
                     elif self.button_type == Button_Type.CodeButton:
@@ -68,6 +76,8 @@ class Button:
                         return self.readme_button(buttons, rightScreen)
 
     def welcome_button(self, buttons, rightScreen):
+        
+        # set animation to blank rectangle
         # reset all everything
         for button in buttons:
             button.pressed = False
@@ -75,13 +85,18 @@ class Button:
             button.dynamic_top_color = button.top_color
         
         rightScreen.update('', Screen_Type.Home)
+        self.program.reset_animation()
 
-    def play_button(self, buttons, rightScreen):
+    def play_button(self, buttons):
+        self.program.reset_animation()
         for button in buttons:
             if (button.button_type == Button_Type.AlgoButton and
                 button.pressed == True):
-                break
-                
+                if button.text == 'DFS':
+                    self.program.currentAnimation = self.program.animation['DFS']
+                else:
+                    self.program.currentAnimation = self.program.animation['test']
+        
         self.dynamic_elevation = self.elevation
         self.dynamic_top_color = self.top_color
         self.pressed = False
@@ -147,6 +162,8 @@ class Button:
                 button.pressed = True
         
         rightScreen.update(self.text, Screen_Type.ReadMe)
+        self.program.reset_animation()
+        self.program.currentAnimation = self.program.animation['first']
 
-
-        
+    
+            

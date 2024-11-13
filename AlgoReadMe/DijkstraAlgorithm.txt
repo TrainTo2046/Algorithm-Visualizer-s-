@@ -13,7 +13,7 @@ Step 5: Repeat until visited all nodes
 
 graph: {A: [B: 4, C: 2], 
         B: [C: 3, D: 2, E: 3],
-        C: [B: 3, D: 4, E: 5],
+        C: [B: 1, D: 4, E: 5],
         D: [], E: [D: 1]}
 
 start = A
