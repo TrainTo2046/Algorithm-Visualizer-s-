@@ -42,7 +42,7 @@ The algorithms problems were picked for this program based on their apperance in
 ## Installation
 
 ### Prerequisites
-Make sure your device has python installed;
+Make sure your device has python installed, pygame installed.
 
 ### Steps
 
@@ -62,7 +62,7 @@ Once the project is running, you can use the following controls to interact with
 - **Reset**: Select the Algo-Visualizer Button to go back reset the program.
 
 ## Demo
-Check out the demo video in the video above (NOT CURRENTLY INCLUDED)
+Check out the demo video in the video above: AlgoVisualizerDemp.mp4
 
 ## Contact
 Reach out:
