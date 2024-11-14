@@ -36,6 +36,8 @@ class ButtonList():
                             algoButton7, algoButton8, algoButton9, 
                             algoButton10, algoButton11, algoButton12, 
                             algoButton2]
-
-    def get_button(self):
-        return self.button_list
+    
+    # draws all the buttons
+    def draw(self):
+        for button in self.button_list:
+            button.draw()

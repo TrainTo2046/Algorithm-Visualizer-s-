@@ -5,75 +5,106 @@ from rightScreen import Right_Screen
 from animation import Animation
 from utils import get_background_img, load_images
 
+# First Page consists of the first frame of animation
 FIRST_PAGE = 'FirstPage/'
+# Animation Page consists of all the frames of animation
 ANIMATION_PAGE = 'AlgoAnimation/'
-TEST = 'testAnimation/'
 
 class Algorithm_Visualizer:
     def __init__(self):
+        # initalize pygame
         pygame.init()
 
+        # width of the screen
         SCREEN_WIDTH = 1024
+        # height of the screen
         SCREEN_HEIGHT = 768
         
+        # Caption for the program window
         pygame.display.set_caption('Algorithm Visualizer')
+        # creating the program window
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+        # allows the game to run at n frames per sec
         self.clock = pygame.time.Clock()
 
         # All Buttons
-        allButtons = ButtonList(self)
-        self.button_list = allButtons.get_button()
+        self.allButtons = ButtonList(self)
 
         # All Right Screens
         self.rightScreens = Right_Screen(self)
 
         # Animations
         self.animation = {
-            'first': Animation(load_images(TEST + 'current'), img_dur = 30),
-            'test': Animation(load_images(TEST + 'test'), img_dur = 30),
-            'DFS': Animation(load_images(ANIMATION_PAGE + 'DFS'))
+            'DFS': Animation(load_images(ANIMATION_PAGE + 'DFS'), img_dur= 70),
+            'Bellman-Ford': Animation(load_images(ANIMATION_PAGE + 'Bellman-Ford'), img_dur= 100),
+            'BFS': Animation(load_images(ANIMATION_PAGE + 'BFS'), img_dur= 70),
+            'BinarySearch': Animation(load_images(ANIMATION_PAGE + 'BinarySearch'), img_dur= 60),
+            'BubbleSort': Animation(load_images(ANIMATION_PAGE + 'BubbleSort'), img_dur= 70),
+            'BucketSort': Animation(load_images(ANIMATION_PAGE + 'BucketSort'), img_dur= 50),
+            'DijkstraAlgorithm': Animation(load_images(ANIMATION_PAGE + 'DijkstraAlgorithm'), img_dur= 70),
+            'FloydsAlgorithm': Animation(load_images(ANIMATION_PAGE + 'FloydsAlgorithm'), img_dur= 50),
+            'KruskalAlgorithm': Animation(load_images(ANIMATION_PAGE + 'KruskalAlgorithm'), img_dur= 70),
+            'PrimsAlgorithm': Animation(load_images(ANIMATION_PAGE + 'PrimsAlgorithm'), img_dur= 70),
+            'TopologicalSort': Animation(load_images(ANIMATION_PAGE + 'TopologicalSort'), img_dur= 70),
+            'Union-Find': Animation(load_images(ANIMATION_PAGE + 'Union-Find'), img_dur= 50),
         }
         
-        self.currentAnimation = self.animation['first']
-        """
-            'Bellman-Ford': Animation(load_images( 'Bellman-Ford')),
-            'BFS': Animation(load_images('BFS')),
-            'BinarySearch': Animation(load_images('BinarySearch')),
-            'BubbleSort': Animation(load_images('BubbleSort')),
-            'BucketSort': Animation(load_images('BucketSort')),
-            'DFS': Animation(load_images('DFS')),
-            'DijkstraAlgorithm': Animation(load_images('DijkstraAlgorithm')),
-            'FloydsAlgorithm': Animation(load_images('FloydsAlgorithm')),
-            'KruskalAlgorithm': Animation(load_images('KruskalAlgorithm')),
-            'PrimsAlgorithm': Animation(load_images('PrimsAlgorithm')),
-            'TopologicalSort': Animation(load_images('TopologicalSort')),
-            'Union-Find': Animation(load_images('Union-Find')),
-        """
+        # first page
+        self.first_page = {
+            'Home': Animation(load_images(FIRST_PAGE + 'Home')),
+            'DFS': Animation(load_images(FIRST_PAGE + 'DFS')),
+            'Bellman-Ford': Animation(load_images(FIRST_PAGE + 'Bellman-Ford')),
+            'BFS': Animation(load_images(FIRST_PAGE + 'BFS')),
+            'BinarySearch': Animation(load_images(FIRST_PAGE + 'BinarySearch')),
+            'BubbleSort': Animation(load_images(FIRST_PAGE + 'BubbleSort')),
+            'BucketSort': Animation(load_images(FIRST_PAGE + 'BucketSort')),
+            'DFS': Animation(load_images(FIRST_PAGE + 'DFS')),
+            'DijkstraAlgorithm': Animation(load_images(FIRST_PAGE + 'DijkstraAlgorithm')),
+            'FloydsAlgorithm': Animation(load_images(FIRST_PAGE + 'FloydsAlgorithm')),
+            'KruskalAlgorithm': Animation(load_images(FIRST_PAGE + 'KruskalAlgorithm')),
+            'PrimsAlgorithm': Animation(load_images(FIRST_PAGE + 'PrimsAlgorithm')),
+            'TopologicalSort': Animation(load_images(FIRST_PAGE + 'TopologicalSort')),
+            'Union-Find': Animation(load_images(FIRST_PAGE + 'Union-Find')),
+        }
         
+        # animating either only the first page or the entire animation
+        self.currentAnimation = self.first_page['Home']
+    
+    # sets all the animation back to start
     def reset_animation(self):
         for ani in self.animation:
             self.animation[ani].reset()
 
     def run(self):
+        # game loop
         while True:
+            # places the background on the screen
             self.screen.blit(get_background_img(), (0, 0))
+            # draws the right screen to put the readme and code descriptions
             self.rightScreens.drawRightScreen()
 
+            # event handler
             for event in pygame.event.get():
+                # when clicked exit button, program quits
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
 
-            for button in self.button_list:
-                button.draw()
+            # draws all the buttons
+            self.allButtons.draw()
 
+            # draws the current right screen
             self.rightScreens.draw()
             
+            # runs the current animation
             self.currentAnimation.render_animation(self.screen)
+            # updates the current frame of the animation
             self.currentAnimation.update()
 
             pygame.display.update()
+            # running the program 24 frames per second
             self.clock.tick(24)
 
+# runs the visualizer
 Algorithm_Visualizer().run()

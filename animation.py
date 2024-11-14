@@ -1,5 +1,4 @@
 import pygame
-import time
 
 class Animation:
     def __init__(self, images, img_dur =40):
@@ -22,7 +21,6 @@ class Animation:
 
     def img(self):
         return self.images[int(self.frame / self.img_duration)]
-  
 
     def render_animation(self, screen):
         self.middle_rect = pygame.Rect((0, 0), (453, 705), border_radius = 5)

@@ -52,8 +52,9 @@ class Button:
         screen.blit(self.text_surf, self.text_rect)
         self.check_click()
 
+    # checks if any of the buttons are clicked
     def check_click(self):
-        buttons = self.program.button_list
+        buttons = self.program.allButtons.button_list
         rightScreen = self.program.rightScreens
 
         mouse_pos = pygame.mouse.get_pos()
@@ -86,21 +87,20 @@ class Button:
         
         rightScreen.update('', Screen_Type.Home)
         self.program.reset_animation()
+        self.program.currentAnimation = self.program.first_page['Home']
 
     def play_button(self, buttons):
         self.program.reset_animation()
         for button in buttons:
             if (button.button_type == Button_Type.AlgoButton and
                 button.pressed == True):
-                if button.text == 'DFS':
-                    self.program.currentAnimation = self.program.animation['DFS']
-                else:
-                    self.program.currentAnimation = self.program.animation['test']
+                self.program.currentAnimation = self.program.animation[load_name(button.text)]
         
         self.dynamic_elevation = self.elevation
         self.dynamic_top_color = self.top_color
         self.pressed = False
-        
+    
+    # when readme button is clicked
     def readme_button(self, buttons, rightScreen):
         val = False
         for button in buttons:
@@ -110,6 +110,7 @@ class Button:
                 val = True
                 rightScreen.update(button.text, Screen_Type.ReadMe)
 
+            # if code button is currently clicked, it unclicks it
             elif button.button_type == Button_Type.CodeButton:
                 button.dynamic_elevation = button.elevation
                 button.dynamic_top_color = button.top_color
@@ -121,6 +122,7 @@ class Button:
             self.dynamic_top_color = self.top_color
             self.pressed = False
 
+    # when code button is clicked
     def code_button(self, buttons, rightScreen):
         val = False
         for button in buttons:
@@ -129,7 +131,8 @@ class Button:
                 # have selected an algorithm and clicked code button
                 val = True
                 rightScreen.update(button.text, Screen_Type.Code)
-                
+            
+            # if read me button is currently clicked, it unclicks it
             elif button.button_type == Button_Type.ReadMeButton:
                 button.dynamic_elevation = button.elevation
                 button.dynamic_top_color = button.top_color
@@ -140,7 +143,8 @@ class Button:
             self.dynamic_elevation = self.elevation
             self.dynamic_top_color = self.top_color
             self.pressed = False
-                      
+
+    # when any of the alogrithms buttons are clicked              
     def algo_button(self, buttons, rightScreen):
         for button in buttons:
             # Ending a visualizer if it is currently on
@@ -161,9 +165,10 @@ class Button:
                 button.dynamic_top_color = self.clicked_color
                 button.pressed = True
         
+        # update the right screen
         rightScreen.update(self.text, Screen_Type.ReadMe)
         self.program.reset_animation()
-        self.program.currentAnimation = self.program.animation['first']
+        self.program.currentAnimation = self.program.first_page[load_name(self.text)]
 
     
             
