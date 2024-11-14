@@ -63,7 +63,7 @@ Once the project is running, you can use the following controls to interact with
 
 ## Demo
 Check out the demo video in the video above:
-[Watch the video](https://github.com/TrainTo2046/Algorithm-Visualizer-s-/blob/main/AlgoVisualizerDemo.mp4)
+[AlgoVisualizerDemo.mp4](https://github.com/TrainTo2046/Algorithm-Visualizer-s-/blob/main/AlgoVisualizerDemo.mp4)
 
 ## Contact
 Reach out:
