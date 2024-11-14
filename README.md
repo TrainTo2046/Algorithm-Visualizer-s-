@@ -62,7 +62,8 @@ Once the project is running, you can use the following controls to interact with
 - **Reset**: Select the Algo-Visualizer Button to go back reset the program.
 
 ## Demo
-Check out the demo video in the video above: AlgoVisualizerDemp.mp4
+Check out the demo video in the video above:
+[Watch the video](https://github.com/TrainTo2046/Algorithm-Visualizer-s-/blob/main/AlgoVisualizerDemo.mp4)
 
 ## Contact
 Reach out:
